@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewController">
+   <children>
+      <AnchorPane layoutY="-6.0" prefHeight="749.0" prefWidth="398.0">
+         <children>
+            <RadioButton fx:id="RadioBeef" layoutX="65.0" layoutY="65.0" mnemonicParsing="false" text="Beef" toggleGroup="$Meat">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Meat" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="RadioChicken" layoutX="125.0" layoutY="65.0" mnemonicParsing="false" text="Chicken" toggleGroup="$Meat" />
+            <RadioButton fx:id="RadioPork" layoutX="279.0" layoutY="65.0" mnemonicParsing="false" text="Pork" toggleGroup="$Meat" />
+            <RadioButton fx:id="RadioSalmon" layoutX="202.0" layoutY="65.0" mnemonicParsing="false" text="Salmon" toggleGroup="$Meat" />
+            <RadioButton fx:id="RadioGrill" layoutX="65.0" layoutY="144.0" mnemonicParsing="false" text="Grill">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Cook" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="RadioRoast" layoutX="125.0" layoutY="144.0" mnemonicParsing="false" text="Roast" toggleGroup="$Cook" />
+            <RadioButton fx:id="RadioBoil" layoutX="212.0" layoutY="144.0" mnemonicParsing="false" text="Boil" toggleGroup="$Cook" />
+            <RadioButton fx:id="RadioFry" layoutX="277.0" layoutY="144.0" mnemonicParsing="false" text="Fry" toggleGroup="$Cook" />
+            <Button layoutX="82.0" layoutY="622.0" mnemonicParsing="false" onAction="#PlaceOrder" prefHeight="101.0" prefWidth="214.0" text="Place Order">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="82.0" layoutY="564.0" mnemonicParsing="false" onAction="#Clear" prefHeight="39.0" prefWidth="214.0" text="Clear Selection">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Button>
+            <Spinner fx:id="SpinnerAmt" layoutX="82.0" layoutY="370.0" prefHeight="25.0" prefWidth="214.0" />
+            <Label layoutX="82.0" layoutY="341.0" text="Serve this many People:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="BtnBBQ" layoutX="65.0" layoutY="193.0" mnemonicParsing="false" onAction="#addBBQ" prefHeight="52.0" prefWidth="105.0" text="BBQ Sauce" />
+            <Button fx:id="BtnCin" layoutX="210.0" layoutY="193.0" mnemonicParsing="false" onAction="#addCin" prefHeight="52.0" prefWidth="105.0" text="Cinnamon" />
+            <Button fx:id="BtnCumin" layoutX="137.0" layoutY="265.0" mnemonicParsing="false" onAction="#addCumin" prefHeight="52.0" prefWidth="105.0" text="Cumin" />
+            <Label fx:id="OrderDetails" layoutX="14.0" layoutY="418.0" prefHeight="78.0" prefWidth="348.0" text="Order Details:" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="LblPrice" layoutX="18.0" layoutY="496.0" prefHeight="17.0" prefWidth="317.0" text="Price:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
