@@ -3,8 +3,8 @@ package model;
 public abstract class Meat {
 	protected CookMethod cookmethod; 
 	protected int Quantity; 
-	private String type; 
-	private double cost; 
+	private String type;  
+	private String status; 
 	
 	public Meat() {
 		type = "Meat"; 
@@ -28,6 +28,14 @@ public abstract class Meat {
 	
 	public String performCook() {
 		return cookmethod.cook(Quantity, type);
+	}
+	
+	public String getStatus() {
+		return status; 
+	}
+	
+	public void setStatus(String status) {
+		this.status = status; 
 	}
 	
 	public abstract String getRecepie(); 

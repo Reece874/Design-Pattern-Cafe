@@ -1,5 +1,6 @@
 package controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,10 +18,9 @@ import javafx.scene.control.ToggleGroup;
 import model.Disabler;
 import model.InfoDisplays;
 import model.MasterList;
-import model.Order;
+import model.OrderFactory;
 
-public class ViewController implements Initializable{
-	Order order; 
+public class ViewController implements Initializable{ 
 	
 	@FXML
 	private RadioButton RadioBeef;
@@ -70,13 +70,15 @@ public class ViewController implements Initializable{
 	@FXML
 	private Spinner<Integer> SpinnerAmt;
 	
+	private OrderFactory of; 
+	
 	public void PlaceOrder() {
 		if(Meat.getSelectedToggle() == null || Cook.getSelectedToggle() == null) {
 			InfoDisplays.displayGenericInformation("Something is not Selected");
 			return;
 		}else {
-			MasterList.getList().addOrder(order);
-			InfoDisplays.displayGenericInformation("Your order has been placed.  Total: $" + order.getCost());
+			InfoDisplays.displayGenericInformation("Your order has been placed.  Total: $" + of.getCost());
+			MasterList.getList().addOrder(of.getFood());
 			Clear();
 		}
 	}
@@ -89,33 +91,41 @@ public class ViewController implements Initializable{
 		Disabler.getInstance().enableAll();	
 		OrderDetails.setText("Order Details:");
 		LblPrice.setText("Cost:");
-		order.clear();
 	}
 	
 	public void addBBQ() {
-		if(order.getOrderVal()) {
-		order.addBBQ();
-		Disabler.getInstance().disableButton(BtnBBQ);
-		OrderDetails.setText("Order Details: " + order.getDesc());
-		LblPrice.setText("Cost: $" + order.getCost());
+		try {
+			of.addSeasoning("BBQSauce");
+			Disabler.getInstance().disableButton(BtnBBQ);
+			OrderDetails.setText("Order Details: " + of.getDesc());
+			LblPrice.setText("Cost: $" + of.getCost());
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	public void addCin() {
-		if(order.getOrderVal()) {
-		order.addCin();
-		Disabler.getInstance().disableButton(BtnCin);
-		OrderDetails.setText("Order Details: " + order.getDesc());
-		LblPrice.setText("Cost: $" + order.getCost());
+		try {
+			of.addSeasoning("Cinnamon");
+			Disabler.getInstance().disableButton(BtnCin);
+			OrderDetails.setText("Order Details: " + of.getDesc());
+			LblPrice.setText("Cost: $" + of.getCost());
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	public void addCumin() {
-		if(order.getOrderVal()) {
-		order.addCumin();
-		Disabler.getInstance().disableButton(BtnCumin);
-		OrderDetails.setText("Order Details: " + order.getDesc());
-		LblPrice.setText("Cost: $" + order.getCost());
+		try {
+			of.addSeasoning("Cumin");
+			Disabler.getInstance().disableButton(BtnCumin);
+			OrderDetails.setText("Order Details: " + of.getDesc());
+			LblPrice.setText("Cost: $" + of.getCost());
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -136,7 +146,7 @@ public class ViewController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		order = new Order(); 
+		of = new OrderFactory(); 
 		SpinnerAmt.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1, 1));
 		SpinnerAmt.setDisable(true);
 		
@@ -154,9 +164,16 @@ public class ViewController implements Initializable{
 
 		         if (Meat.getSelectedToggle() != null) {
 		             disableSome(Meat.getSelectedToggle().getUserData().toString());
-		             order.setMeatType(Meat.getSelectedToggle().getUserData().toString());
-		     		OrderDetails.setText("Order Details: " + order.getDesc());
-		    		LblPrice.setText("Cost: $" + order.getCost());
+		             try {
+						of.setMeatType(Meat.getSelectedToggle().getUserData().toString());
+					} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+							| InvocationTargetException | NoSuchMethodException | SecurityException
+							| ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		     		OrderDetails.setText("Order Details: " + of.getDesc());
+		    		LblPrice.setText("Cost: $" + of.getCost());
 		             SpinnerAmt.setDisable(false);
 		         }
 		     } 
@@ -166,16 +183,23 @@ public class ViewController implements Initializable{
 		    public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 
 		         if (Cook.getSelectedToggle() != null) {
-		             order.setCookingMethod(Cook.getSelectedToggle().getUserData().toString());
-		     		OrderDetails.setText("Order Details: " + order.getDesc());
-		    		LblPrice.setText("Cost: $" + order.getCost());
+		             try {
+						of.setCook(Cook.getSelectedToggle().getUserData().toString());
+					} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+							| InvocationTargetException | NoSuchMethodException | SecurityException
+							| ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		     		OrderDetails.setText("Order Details: " + of.getDesc());
+		    		LblPrice.setText("Cost: $" + of.getCost());
 		         }
 		     } 
 		});
 		
-		SpinnerAmt.valueProperty().addListener((obs, oldValue, newValue) -> order.setAmount(newValue));
-		SpinnerAmt.valueProperty().addListener((obs, oldValue, newValue) -> OrderDetails.setText("Order Details: " + order.getDesc()));
-		SpinnerAmt.valueProperty().addListener((obs, oldValue, newValue) -> LblPrice.setText("Cost: $" + order.getCost()));
+		SpinnerAmt.valueProperty().addListener((obs, oldValue, newValue) -> of.setAmount(newValue));
+		SpinnerAmt.valueProperty().addListener((obs, oldValue, newValue) -> OrderDetails.setText("Order Details: " + of.getDesc()));
+		SpinnerAmt.valueProperty().addListener((obs, oldValue, newValue) -> LblPrice.setText("Cost: $" + of.getCost()));
 
 	}
 }

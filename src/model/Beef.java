@@ -3,7 +3,6 @@ package model;
 public class Beef extends Meat{
 	
 	public Beef() {
-		setCookMethod(new Roast());
 		setMeatType("Beef");
 		setQuantity(1);
 	}
@@ -21,12 +20,16 @@ public class Beef extends Meat{
 
 	@Override
 	public String getDesc() {
-		return Quantity  + " Order(s) of Beef" + cookmethod.desc();
+		StringBuilder sb = new StringBuilder(Quantity  + " Order(s) of Beef ");
+		if(cookmethod != null) {
+			sb.append(cookmethod.desc());
+		}
+		return sb.toString();
 	}
 
 	@Override
 	public double getCost() {
-		return (14.99 + cookmethod.getCost()) * Quantity;
+		return (cookmethod == null)? 0 : Math.round(100.0 * ((14.99 + cookmethod.getCost()) * Quantity))/100.0;
 	}
 
 }

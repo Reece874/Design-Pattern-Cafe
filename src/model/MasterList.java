@@ -2,14 +2,13 @@ package model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.LinkedList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class MasterList {
 	
-	private static ObservableList<Order> orders; 
+	private static ObservableList<Meat> orders; 
 	private static MasterList masterList; 
 	private PropertyChangeSupport support;
 	
@@ -31,7 +30,7 @@ public class MasterList {
 		return masterList;
 	}
 	
-	public ObservableList<Order> getFullList(){
+	public ObservableList<Meat> getFullList(){
 		return orders; 
 	}
 	
@@ -43,14 +42,10 @@ public class MasterList {
 		support.removePropertyChangeListener(pcl);
 	}
 	
-	public void addOrder(Order order) {
-		try {
-			Order o = (Order)order.Clone(); 
-			orders.add(o);
-			support.firePropertyChange(o.getDesc() + " has been ordered!", orders, o);
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
+	public void addOrder(Meat order) {
+			orders.add(order);
+			support.firePropertyChange(order.getDesc() + " has been ordered!", orders, order);
+			displayMaster();
 	}
 	
 	public void displayList() {

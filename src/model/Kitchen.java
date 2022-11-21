@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Kitchen implements PropertyChangeListener{
 	
 	private static Kitchen kitchen = new Kitchen();
-	private LinkedList<Order> Todo; 
+	private LinkedList<Meat> Todo; 
 	private PropertyChangeSupport support;
 	
 	private Kitchen() {
@@ -31,7 +31,7 @@ public class Kitchen implements PropertyChangeListener{
 	
 	public void completeOrder(int i) {
 		if(Todo.size() > 0) {
-		Order o = Todo.remove(i);
+		Meat o = Todo.remove(i);
 		o.setStatus("Fulfilled");
 		MasterList.getList().displayMaster();
 		support.firePropertyChange(o.getDesc() + " Has been completed", null, null);
@@ -47,7 +47,7 @@ public class Kitchen implements PropertyChangeListener{
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		Todo.add((Order)evt.getNewValue());
+		Todo.add((Meat)evt.getNewValue());
 	}
 	
 	

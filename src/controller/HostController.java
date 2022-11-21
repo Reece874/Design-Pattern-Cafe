@@ -13,21 +13,21 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Kitchen;
 import model.MasterList;
-import model.Order;
+import model.Meat;
 
 public class HostController implements Initializable, PropertyChangeListener{
 	
 	@FXML
-	private TableView<Order> Table; 
+	private TableView<Meat> Table; 
 	
 	@FXML 
-	private TableColumn<Order, String> Col1;
+	private TableColumn<Meat, String> Col1;
 	
 	@FXML 
-	private TableColumn<Order, Double> Col2;
+	private TableColumn<Meat, Double> Col2;
 	
 	@FXML 
-	private TableColumn<Order, String> Col3;
+	private TableColumn<Meat, String> Col3;
 	
 	@FXML
 	private TextArea TAalerts; 

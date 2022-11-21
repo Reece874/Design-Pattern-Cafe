@@ -20,7 +20,7 @@ public class Cumin extends spiceDecorator{
 	
 	@Override
 	public double getCost() {
-		return (meat.getCost() + (0.59 * meat.getQuantity()));
+		return Math.round(100.0 * ((meat.getCost() + (0.59 * meat.getQuantity()))))/100.0;
 	}
 
 	@Override
@@ -38,6 +38,16 @@ public class Cumin extends spiceDecorator{
 	@Override
 	public int getQuantity() {
 		return meat.getQuantity();
+	}
+	
+	@Override
+	public String getStatus() {
+		return meat.getStatus();
+	}
+	
+	@Override
+	public void setStatus(String status) {
+		meat.setStatus(status);
 	}
 
 }
