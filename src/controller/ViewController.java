@@ -15,6 +15,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import model.AddSpice;
 import model.Disabler;
 import model.InfoDisplays;
 import model.MasterList;
@@ -94,39 +95,23 @@ public class ViewController implements Initializable{
 	}
 	
 	public void addBBQ() {
-		try {
-			of.addSeasoning("BBQSauce");
-			Disabler.getInstance().disableButton(BtnBBQ);
-			OrderDetails.setText("Order Details: " + of.getDesc());
-			LblPrice.setText("Cost: $" + of.getCost());
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		AddSpice.addSeasoning(of, "BBQSauce", BtnBBQ);
+		setData();
 	}
 	
 	public void addCin() {
-		try {
-			of.addSeasoning("Cinnamon");
-			Disabler.getInstance().disableButton(BtnCin);
-			OrderDetails.setText("Order Details: " + of.getDesc());
-			LblPrice.setText("Cost: $" + of.getCost());
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		AddSpice.addSeasoning(of, "Cinnamon", BtnCin);
+		setData();
 	}
 	
 	public void addCumin() {
-		try {
-			of.addSeasoning("Cumin");
-			Disabler.getInstance().disableButton(BtnCumin);
-			OrderDetails.setText("Order Details: " + of.getDesc());
-			LblPrice.setText("Cost: $" + of.getCost());
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		AddSpice.addSeasoning(of, "Cumin", BtnCumin);
+		setData();
+	}
+	
+	public void setData() {
+		OrderDetails.setText("Order Details: " + of.getDesc());
+		LblPrice.setText("Cost: $" + of.getCost());
 	}
 	
 	public void disableSome(String Disable) {
@@ -169,7 +154,6 @@ public class ViewController implements Initializable{
 					} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 							| InvocationTargetException | NoSuchMethodException | SecurityException
 							| ClassNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 		     		OrderDetails.setText("Order Details: " + of.getDesc());
