@@ -17,28 +17,55 @@ public class test {
 //		kitchen.completeOrder(0);
 //		MasterList.getList().displayMaster();
 		
-		OrderFactory of = new OrderFactory(); 
+//		MealFactory of = new MealFactory(); 
+//		try {
+//			of.setMeatType("Beef");
+//			of.setCook("Roast");
+//			//System.out.println(of.getDesc());
+//			Meat m = of.getFood(); 
+//			
+//			of.setMeatType("Salmon");
+//			of.setCook("Grill");
+//			of.addSeasoning("Cumin");
+//			of.addSeasoning("BBQSauce");
+//			Meat m2 = of.getFood(); 
+//			
+//			System.out.println(m.getDesc());
+//			System.out.println(m2.getDesc());
+//		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+//				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		OrderFactory off = new OrderFactory();
 		try {
-			of.setMeatType("Beef");
-			of.setCook("Roast");
-			//System.out.println(of.getDesc());
-			Meat m = of.getFood(); 
+			off.setMeatType("Beef");
+			off.setCook("Roast");
+			off.addToOrder();
 			
-			of.setMeatType("Salmon");
-			of.setCook("Grill");
-			of.addSeasoning("Cumin");
-			of.addSeasoning("BBQSauce");
-			Meat m2 = of.getFood(); 
+			off.setMeatType("Salmon");
+			off.setCook("Grill");
+			off.addSeasoning("Cumin");
+			off.addSeasoning("BBQSauce");
+			off.addToOrder();
 			
-			System.out.println(m.getDesc());
-			System.out.println(m2.getDesc());
+			Order o = off.getOrder();
+			System.out.println(o.getItemDesc());
+			
+			off.setMeatType("Beef");
+			off.setCook("Roast");
+			off.addToOrder();
+		
+			Order o2 = off.getOrder();
+			System.out.println(o2.getItemDesc());
+			System.out.println(o.getItemDesc());
+			
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		
 
 
 	}

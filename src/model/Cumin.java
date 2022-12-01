@@ -39,15 +39,5 @@ public class Cumin extends spiceDecorator{
 	public int getQuantity() {
 		return meat.getQuantity();
 	}
-	
-	@Override
-	public String getStatus() {
-		return meat.getStatus();
-	}
-	
-	@Override
-	public void setStatus(String status) {
-		meat.setStatus(status);
-	}
 
 }

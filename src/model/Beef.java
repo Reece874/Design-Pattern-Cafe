@@ -14,11 +14,6 @@ public class Beef extends Meat{
 	}
 
 	@Override
-	public String getRecepie() {
-		return performCook();
-	}
-
-	@Override
 	public String getDesc() {
 		StringBuilder sb = new StringBuilder(Quantity  + " Order(s) of Beef ");
 		if(cookmethod != null) {

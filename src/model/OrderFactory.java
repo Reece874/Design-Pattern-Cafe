@@ -4,11 +4,16 @@ import java.lang.reflect.InvocationTargetException;
 
 public class OrderFactory {
 	
-	private Meat food; 
+	private Order order;
+	private Meat food;
+	
+	public OrderFactory() {
+		order = new Order();
+	}
 	
 	public void setMeatType(String meat) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
 		Class<?> clazz = Class.forName("model." + meat);	
-		food = (Meat)clazz.getDeclaredConstructor().newInstance();		
+		food = (Meat)clazz.getDeclaredConstructor().newInstance();	
 	}
 	
 	public void setCook(String cook) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
@@ -47,12 +52,33 @@ public class OrderFactory {
 		return 0;
 	}
 	
-	public Meat getFood() {
+	public double getOrderCost() {
+		return order.getCost();
+	}
+	
+	public String getRecepit() {
+		return order.getReciept();
+	}
+	
+	public void addToOrder() {
 		Meat f = food; 
 		food = null; 
-		f.setStatus("Incompleted");
-		return f;
-		
+		order.add(f);
 	}
+	
+	public Order getOrder() {
+		Order o = order; 
+		order = new Order(); 
+		return o;
+	}
+	
+	public boolean isOrderEmpty() {
+		if(order == null) {
+			return true; 
+		}
+		return false;
+	}
+	
+	
 
 }

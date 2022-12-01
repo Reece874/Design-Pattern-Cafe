@@ -12,11 +12,6 @@ public class Salmon extends Meat{
 		setMeatType("Salmon");
 		setQuantity(qty);
 	}
-
-	@Override
-	public String getRecepie() {
-		return performCook();
-	}
 	
 	@Override
 	public String getDesc() {

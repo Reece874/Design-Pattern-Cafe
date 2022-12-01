@@ -12,11 +12,6 @@ public class Pork extends Meat{
 		setMeatType("Pork");
 		setQuantity(qty);
 	}
-
-	@Override
-	public String getRecepie() {
-		return performCook();
-	}
 	
 	@Override
 	public String getDesc() {

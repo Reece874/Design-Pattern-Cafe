@@ -12,11 +12,6 @@ public class Chicken extends Meat{
 		setMeatType("Chicken");
 		setQuantity(qty);
 	}
-
-	@Override
-	public String getRecepie() {
-		return performCook();
-	}
 	
 	@Override
 	public String getDesc() {

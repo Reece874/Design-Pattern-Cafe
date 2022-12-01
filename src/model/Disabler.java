@@ -29,7 +29,6 @@ public class Disabler {
 	
 	public void disableButton(Button button) {
 		button.setDisable(true);
-		//disabledSpice.add(button);
 		disabled.add(button); 
 	}
 	

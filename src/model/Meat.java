@@ -1,10 +1,9 @@
 package model;
 
-public abstract class Meat {
+public abstract class Meat implements Item{
 	protected CookMethod cookmethod; 
 	protected int Quantity; 
 	private String type;  
-	private String status; 
 	
 	public Meat() {
 		type = "Meat"; 
@@ -30,15 +29,14 @@ public abstract class Meat {
 		return cookmethod.cook(Quantity, type);
 	}
 	
-	public String getStatus() {
-		return status; 
+	public String getRecepie() {
+		return performCook();
 	}
 	
-	public void setStatus(String status) {
-		this.status = status; 
+	public String getReceipt() {
+		return getDesc() + ": $" + getCost();
 	}
 	
-	public abstract String getRecepie(); 
 	public abstract String getDesc(); 
 	public abstract double getCost();
 	

@@ -13,21 +13,21 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Kitchen;
 import model.MasterList;
-import model.Meat;
+import model.Order;
 
 public class HostController implements Initializable, PropertyChangeListener{
 	
 	@FXML
-	private TableView<Meat> Table; 
+	private TableView<Order> Table; 
 	
 	@FXML 
-	private TableColumn<Meat, String> Col1;
+	private TableColumn<Order, String> Col1;
 	
 	@FXML 
-	private TableColumn<Meat, Double> Col2;
+	private TableColumn<Order, Double> Col2;
 	
 	@FXML 
-	private TableColumn<Meat, String> Col3;
+	private TableColumn<Order, String> Col3;
 	
 	@FXML
 	private TextArea TAalerts; 
@@ -39,7 +39,7 @@ public class HostController implements Initializable, PropertyChangeListener{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Kitchen.getKitchen().addPropertyChangeListener(this);
 		MasterList.getList().addPropertyChangeListener(this);
-		Col1.setCellValueFactory(new PropertyValueFactory<>("Desc"));
+		Col1.setCellValueFactory(new PropertyValueFactory<>("ItemDesc"));
 		Col2.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 		Col3.setCellValueFactory(new PropertyValueFactory<>("Status"));
 		Table.setItems(MasterList.getList().getFullList());

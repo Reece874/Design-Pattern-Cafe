@@ -8,14 +8,15 @@ import javafx.collections.ObservableList;
 
 public class MasterList {
 	
-	private static ObservableList<Meat> orders; 
+	private static ObservableList<Order> orders; 
 	private static MasterList masterList; 
 	private PropertyChangeSupport support;
 	
 	public void displayMaster() {
 		for (int i = 0; i < orders.size(); i++) {
-			System.out.println(orders.get(i).getDesc() + " " + orders.get(i).getStatus());
+			System.out.println(orders.get(i).getItemDesc());
 		}
+		// + " " + orders.get(i).getStatus()
 	}
 	
 	private MasterList() {
@@ -30,7 +31,7 @@ public class MasterList {
 		return masterList;
 	}
 	
-	public ObservableList<Meat> getFullList(){
+	public ObservableList<Order> getFullList(){
 		return orders; 
 	}
 	
@@ -42,15 +43,15 @@ public class MasterList {
 		support.removePropertyChangeListener(pcl);
 	}
 	
-	public void addOrder(Meat order) {
+	public void addOrder(Order order) {
 			orders.add(order);
-			support.firePropertyChange(order.getDesc() + " has been ordered!", orders, order);
+			support.firePropertyChange(order.getItemDesc() + " has been ordered!", orders, order);
 			displayMaster();
 	}
 	
 	public void displayList() {
 		for (int i = 0; i < orders.size(); i++) {
-			System.out.println(orders.get(i).getDesc());
+			System.out.println(orders.get(i).getItemDesc());
 		}
 	}
 

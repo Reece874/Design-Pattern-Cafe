@@ -74,12 +74,20 @@ public class ViewController implements Initializable{
 	private OrderFactory of; 
 	
 	public void PlaceOrder() {
+		if(of.isOrderEmpty()) {
+			InfoDisplays.displayGenericInformation("Nothing Has Been Ordered!");
+			return; 
+		}
+		InfoDisplays.displayGenericInformation("Thank you for dining with us\n" + of.getRecepit());
+		MasterList.getList().addOrder(of.getOrder());
+	}
+	
+	public void AddItem() {
 		if(Meat.getSelectedToggle() == null || Cook.getSelectedToggle() == null) {
 			InfoDisplays.displayGenericInformation("Something is not Selected");
 			return;
 		}else {
-			InfoDisplays.displayGenericInformation("Your order has been placed.  Total: $" + of.getCost());
-			MasterList.getList().addOrder(of.getFood());
+			of.addToOrder();
 			Clear();
 		}
 	}
